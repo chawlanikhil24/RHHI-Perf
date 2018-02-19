@@ -5,9 +5,9 @@ out_PATH=$2
 stat_PATH=$3
 final_out=""
 slash="/"
-device=/mnt$slash$4$slash
+mountpoint=$4$slash
 
-echo $device
+echo $mountpoint
 
 run_FIO()
 {
