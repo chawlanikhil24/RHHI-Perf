@@ -1,0 +1,10 @@
+---
+- name: Create a test file
+  shell: touch /home/nichawla/VAR_TEST_FILE.out
+
+- name: I am writing the variables to a file
+  lineinfile:
+    path: /home/nichawla/VAR_TEST_FILE.out 
+    line: last
+...
+

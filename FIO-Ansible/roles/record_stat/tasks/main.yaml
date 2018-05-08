@@ -1,0 +1,7 @@
+---
+- name: Initiate IOSTAT logs
+  shell: 'nohup iostat -dkxtz -c 3 > "{{ iostat_dir }}"/"{{ test }}" &'
+
+- name: Initiate VMSTAT logs
+  shell: 'nohup vmstat -n 3 > "{{ vmstat_dir }}"/"{{ test }}" &'
+...    

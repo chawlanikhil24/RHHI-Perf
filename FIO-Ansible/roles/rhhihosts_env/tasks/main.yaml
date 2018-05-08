@@ -1,0 +1,15 @@
+---
+- name: Create VDO Logs Directory
+  file:
+    path="{{ vdo_logs }}"
+    state=directory
+
+- name: Create VDO Logs Sub-directories
+  shell: mkdir -p "{{ vdo_logs }}"/vdo_status "{{ vdo_logs }}"/vdo_status "{{ vdo_logs }}"/vdo_stats "{{ vdo_logs }}"/vdo_bio
+  ignore_errors: yes
+
+- name: Create Network Logs Directory
+  file:
+    path="{{ network_dir }}"
+    state=directory
+...

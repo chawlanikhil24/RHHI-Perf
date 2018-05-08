@@ -1,0 +1,10 @@
+---
+- name: Changing IODEPTH and DEDUPLICATION PERECENTAGE
+  set_fact:
+    dedupe_percentage: item[1]
+    iodepth: item[0]
+
+- debug:
+    msg: '"{{ iodepth }}_"{{ dedupe_percentage }}""'
+...
+

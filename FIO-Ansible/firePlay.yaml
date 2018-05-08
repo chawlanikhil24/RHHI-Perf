@@ -1,0 +1,44 @@
+---
+- name: SETTING UP OF WORKING ENVIRONMENT ON ALL
+  hosts: all
+  remote_user: root
+  become: true
+  roles:
+    - common_env
+
+- name: SETTING UP OF WORKING ENVIRONMENT ON Virtual Machine
+  hosts: vm
+  gather_facts: no
+  remote_user: root
+  become: true
+  roles:
+    - vm_env
+
+- name: SETTING UP OF WORKING ENVIRONMENT ON HOSTS
+  hosts: rhhihosts
+  gather_facts: no
+  remote_user: root
+  become: true
+  roles:
+    - rhhihosts_env
+
+- name: EXECUTING FIO RUNS FROM CONVERGENCE POINT
+  hosts: rhhihosts
+  remote_user: root
+  gather_facts: yes
+  roles:
+    - record_stat
+    - fio_sequential_write
+    - kill_stat
+    - clear_cache
+    - change_vars_for_random_read
+    - sleep_10sec
+    - record_stat
+    - fio_random_read
+    - kill_stat
+    - change_vars_for_random_write
+    - sleep_10sec
+    - record_stat
+    - fio_random_write
+    - kill_stat
+    - change_vars_for_seq_write

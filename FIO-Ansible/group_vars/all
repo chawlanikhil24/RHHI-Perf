@@ -1,0 +1,21 @@
+---
+iostat_dir: /home/RHHI_PERF/iostat
+vmstat_dir: /home/RHHI_PERF/vmstat
+mpstat_dir: /home/RHHI_PERF/mpstat
+top_dir: /home/RHHI_PERF/top
+workdir_path: /home/RHHI_PERF
+vdo_logs: /home/RHHI_PERF/vdo
+network_dir: /home/RHHI_PERF/network
+
+pkg1: fio
+pkg2: sysstat
+
+fio_dir: /home/RHHI_PERF/fio
+dedupe_percentage: 0
+iodepth: 1
+operation: write
+type: sequential
+test: '"{{ type }}"."{{ operation }}".dedupe_"{{ dedupe_percentage }}".iodepth_"{{ iodepth }}".out'
+fio_test_directory: /mnt/test_vol/
+fio_vm: dhcp159-43.sbu.lab.eng.bos.redhat.com
+fio_jobs: 1

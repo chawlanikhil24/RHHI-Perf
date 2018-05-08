@@ -1,0 +1,9 @@
+---
+- name: Kill  IOSTAT logs
+  shell: "pkill iostat"
+  ignore_errors: yes
+
+- name: Kill  VMSTAT logs
+  shell: "pkill vmstat"
+  ignore_errors: yes
+...    

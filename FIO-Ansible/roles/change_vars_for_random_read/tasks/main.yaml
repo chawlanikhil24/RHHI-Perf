@@ -1,0 +1,13 @@
+---
+- name: Change the VARS for random read
+  set_fact:
+    operation: "read"
+    type: "random"
+  when: 
+    - operation == 'write' 
+    - type == 'sequential'
+
+- debug:
+    var: test
+...
+
