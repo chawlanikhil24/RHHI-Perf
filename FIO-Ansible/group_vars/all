@@ -17,5 +17,5 @@ operation: write
 type: sequential
 test: '"{{ type }}"."{{ operation }}".dedupe_"{{ dedupe_percentage }}".iodepth_"{{ iodepth }}".out'
 fio_test_directory: /mnt/test_vol/
-fio_vm: dhcp159-43.sbu.lab.eng.bos.redhat.com
+fio_vm:
 fio_jobs: 1
