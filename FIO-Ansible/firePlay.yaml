@@ -22,23 +22,15 @@
   roles:
     - rhhihosts_env
 
-- name: EXECUTING FIO RUNS FROM CONVERGENCE POINT
-  hosts: rhhihosts
-  remote_user: root
-  gather_facts: yes
-  roles:
-    - record_stat
-    - fio_sequential_write
-    - kill_stat
-    - clear_cache
-    - change_vars_for_random_read
-    - sleep_10sec
-    - record_stat
-    - fio_random_read
-    - kill_stat
-    - change_vars_for_random_write
-    - sleep_10sec
-    - record_stat
-    - fio_random_write
-    - kill_stat
-    - change_vars_for_seq_write
+
+- name: EXECUTING PERFORMANCE RUNS
+ hosts: all
+ remote_user: root
+ gather_facts: yes
+ tasks:
+
+   - name: Importing tasks
+     include: fio_runs.yaml iodepth="{{ item[0] }}" dedupe_percentage="{{ item[1] }}"
+     with_nested:
+         - [1,4,8,16]
+         - [0,25]

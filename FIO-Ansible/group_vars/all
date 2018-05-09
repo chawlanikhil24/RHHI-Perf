@@ -15,7 +15,7 @@ dedupe_percentage: 0
 iodepth: 1
 operation: write
 type: sequential
-test: '"{{ type }}"."{{ operation }}".dedupe_"{{ dedupe_percentage }}".iodepth_"{{ iodepth }}".out'
-fio_test_directory: /mnt/test_vol/
-fio_vm:
-fio_jobs: 1
+test: '"{{ type }}"."{{ operation }}".iodepth_"{{ iodepth }}".dedupe_"{{ dedupe_percentage }}".out'
+fio_test_directory: 
+fio_vm: 
+fio_jobs: 4
