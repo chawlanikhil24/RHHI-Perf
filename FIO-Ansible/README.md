@@ -2,8 +2,8 @@ These set of ANSIBLE Playbooks are intended to automate the performance evaluati
 
 How to run ?
 
-1. Add the RHHI Hostnames in [rhhihosts ]and VM hostname in the vm[] in the Ansible inventory file.
-2. Also mention the VM Hostname in the "groups/all" as the value of "fio_vm" key/
+1. Add the RHHI Hostnames in [rhhihosts ]and VM hostname in the [vm] in the Ansible inventory file.
+2. Also mention the VM Hostname in the "groups/all" as the value of "fio_vm" key.
 3. Now all the user parameters are setup. Time to fire UP the scripts.
 4. There are 2 ways to fire up the scripts:
 
