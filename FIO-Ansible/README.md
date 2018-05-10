@@ -8,7 +8,9 @@ How to run ?
 4. There are 2 ways to fire up the scripts:
 
     -   To run fio and capture the statistics normally, run:
-        ansible-playbook firePlay.yaml -i inventory -e volume=normal 
+    
+        ```ansible-playbook firePlay.yaml -i inventory -e volume=normal``` 
 
     -   To run fio and capture the vdo related statistics with other statistics, run:
-        ansible-playbook firePlay.yaml -i inventory -e volume=vdo -e vdo_volume_name=<vdo_volume_name>
+    
+        ```ansible-playbook firePlay.yaml -i inventory -e volume=vdo -e vdo_volume_name=<vdo_volume_name>```
