@@ -15,6 +15,7 @@
       name: fio_sequential_write
 
 - name: include role for VDO
+  hosts: rhhihosts
   include_role:
       name: capture_vdo_logs
   when: volume=='vdo'
@@ -52,6 +53,7 @@
       name: kill_stat
 
 - name: include role for VDO
+  hosts: rhhihosts
   include_role:
       name: capture_vdo_logs
   when: volume=='vdo'
@@ -77,6 +79,7 @@
       name: kill_stat
 
 - name: include role for VDO
+  hosts: rhhihosts
   include_role:
       name: capture_vdo_logs
   when: volume=='vdo'
