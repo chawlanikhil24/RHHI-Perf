@@ -1,0 +1,10 @@
+---
+- name: Turn Gluster Eager Lock OFF
+  hosts: rhhihosts[0]
+  remote_user: root
+  tasks:
+    - name : Executing
+      command: gluster vol set "{{ gluster_vol_name }}" cluster.eager-lock off
+      register: any_msg
+...
+
