@@ -1,28 +1,28 @@
 ---
-#- name: SETTING UP OF WORKING ENVIRONMENT ON ALL
-#  hosts: all
-#  remote_user: root
-#  become: true
-#  roles:
-#    - common_env
-#
-#- name: SETTING UP OF WORKING ENVIRONMENT ON Virtual Machine
-#  hosts: vm
-#  gather_facts: no
-#  remote_user: root
-#  become: true
-#  roles:
-#    - vm_env
-#
-#- name: SETTING UP OF WORKING ENVIRONMENT ON HOSTS
-#  hosts: rhhihosts
-#  gather_facts: no
-#  remote_user: root
-#  become: true
-#  roles:
-#    - rhhihosts_env
-#
-#
+- name: SETTING UP OF WORKING ENVIRONMENT ON ALL
+  hosts: all
+  remote_user: root
+  become: true
+  roles:
+    - common_env
+
+- name: SETTING UP OF WORKING ENVIRONMENT ON Virtual Machine
+  hosts: vm
+  gather_facts: no
+  remote_user: root
+  become: true
+  roles:
+    - vm_env
+
+- name: SETTING UP OF WORKING ENVIRONMENT ON HOSTS
+  hosts: rhhihosts
+  gather_facts: no
+  remote_user: root
+  become: true
+  roles:
+    - rhhihosts_env
+
+
 - name: EXECUTING PERFORMANCE RUNS
   hosts: all
   remote_user: root
