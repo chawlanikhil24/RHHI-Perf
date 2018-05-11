@@ -1,0 +1,6 @@
+---
+ - name : Executing
+   run_once: true
+   delegate_to: "{{ gluster_host }}"
+   command: gluster vol set "{{ gluster_vol_name }}" cluster.eager-lock off
+...

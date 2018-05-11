@@ -1,0 +1,6 @@
+---
+- name: change vars
+  set_fact:
+    type: sequential
+    operation: write
+...

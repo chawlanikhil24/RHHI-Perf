@@ -1,0 +1,90 @@
+---
+- debug:
+    var: test
+
+- name: include role 1
+  include_role:
+      name: record_stat
+
+- name: include role for gluster eager-lock off
+  include_role:
+      name: gluster_eager_lock_off
+
+- name: include role 2
+  include_role:
+      name: fio_sequential_write
+
+- name: include role for VDO
+  hosts: rhhihosts
+  include_role:
+      name: capture_vdo_logs
+  when: volume=='vdo'
+
+- name: include role 3
+  include_role:
+      name: kill_stat
+
+- name: include role 4
+  include_role:
+      name: clear_cache
+
+- name: include role 5
+  include_role:
+      name: change_vars_for_random_read
+
+- name: include role 6
+  include_role:
+      name: sleep_10sec
+
+- name: include role 7
+  include_role:
+      name: record_stat
+
+- name: include role for gluster eager-lock on
+  include_role:
+      name: gluster_eager_lock_on
+
+- name: include role 8
+  include_role:
+      name: fio_random_read
+
+- name: include role 9
+  include_role:
+      name: kill_stat
+
+- name: include role for VDO
+  hosts: rhhihosts
+  include_role:
+      name: capture_vdo_logs
+  when: volume=='vdo'
+
+- name: include role 10
+  include_role:
+      name: change_vars_for_random_write
+
+- name: include role 11
+  include_role:
+      name: sleep_10sec
+
+- name: include role 12
+  include_role:
+      name: record_stat
+
+- name: include role 13
+  include_role:
+      name: fio_random_write
+
+- name: include role 14
+  include_role:
+      name: kill_stat
+
+- name: include role for VDO
+  hosts: rhhihosts
+  include_role:
+      name: capture_vdo_logs
+  when: volume=='vdo'
+
+- name: include role 15
+  include_role:
+      name: change_vars_for_seq_write
+...

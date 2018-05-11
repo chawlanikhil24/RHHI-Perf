@@ -1,0 +1,13 @@
+---
+- name: Change the VARS for sequential write
+  set_fact:
+    operation: "write"
+    type: "sequential"
+  when: 
+    - operation == 'write' 
+    - type == 'random'
+
+- debug:
+    var: test
+...
+
