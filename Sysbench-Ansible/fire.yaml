@@ -1,0 +1,23 @@
+---
+    - name: Setting up of Environment on all
+      hosts: all
+      remote_user: root
+      become: true
+      roles:
+          - common_env
+
+    - name: Setting up of Environment on all
+      hosts: rhhihosts
+      remote_user: root
+      become: true
+      roles:
+          - rhhihosts_env
+
+    - name: Setting up of Environment on VM
+      hosts: sysbenchVM
+      remote_user: root
+      become: true
+      roles:
+          - sysbenchVM_env
+
+...

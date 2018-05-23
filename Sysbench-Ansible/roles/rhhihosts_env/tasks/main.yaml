@@ -1,0 +1,13 @@
+---
+
+    - name: Create VDO Logs Directory
+      file:
+          path="{{ vdo_logs }}"
+          state=directory
+      when: volume=='vdo'
+
+    - name: Create VDO Logs Sub-directories
+      shell: mkdir -p "{{ vdo_logs }}"/vdo_status  "{{ vdo_logs }}"/vdo_stats "{{ vdo_logs }}"/vdo_bio
+      ignore_errors: yes
+      when: volume=='vdo'
+...

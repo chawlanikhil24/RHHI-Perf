@@ -1,0 +1,29 @@
+---
+    - name: Install sysstat package
+      shell: yum install -y sysstat
+
+    - name: Create Working Directory
+      file:
+          path="{{ workdir_path }}"
+          state=directory
+
+    - name: Create Iostat Directory
+      file:
+          path="{{ iostat_dir }}"
+          state=directory
+
+    - name: Create Mpstat Directory
+      file:
+          path="{{ mpstat_dir }}"
+          state=directory
+
+    - name: Create Vmstat Directory
+      file:
+          path="{{ vmstat_dir }}"
+          state=directory
+
+    - name: Create top Directory
+      file:
+          path="{{ top_dir }}"
+          state=directory
+...

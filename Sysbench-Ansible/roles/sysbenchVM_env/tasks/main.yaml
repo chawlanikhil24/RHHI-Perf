@@ -1,0 +1,72 @@
+---
+    - name: Create Sysbench Directory
+      file:
+        path="{{ sysbench_dir }}"
+        state=directory
+
+    - name: Setup MariDB repo
+      template:
+          src: mariadb.repo.j2
+          dest: /etc/yum.repos.d/mariadb.repo
+
+    - name: Install MariaDB package
+      shell: yum install MariaDB-server MariaDB-devel -y
+
+    - name: Setup Sysbench repo
+      shell: curl -s https://packagecloud.io/install/repositories/akopytov/sysbench/script.rpm.sh | sudo bash
+
+    - name: Install Sysbench package
+      shell: yum install sysbench -y
+
+    - name: Copy MariDB Configuration file
+      template:
+          src: my.cnf.j2
+          dest: /etc/my.cnf
+
+    - name: Change Selinux Policy to Permissive
+      selinux:
+          policy: targeted
+          state: permissive
+
+    - name: Get Selinux
+      shell: getenforce
+      register: reg_var
+
+    - name: Debug Selinux
+      debug:
+          var: reg_var
+
+    - name: Creating XFS filesystem on the data disk
+      shell: mkfs.xfs /dev/{{ data_disk }}
+
+    - name: Create Perf1 Directory
+      file:
+        path=/perf1
+        state=directory
+
+    - name: Mounting the data disk on the mount point
+      shell: mount /dev/{{ data_disk }} /perf1
+
+    - name: Create innodb data dir
+      file:
+          path: /perf1/mysql_data
+
+    - name: Change Permissions of mysql_data
+      shell: chmod 777 /perf1/mysql_data
+
+    - name: Stop MySQL Service
+      service:
+          name: mysql
+          state: stopped
+
+    - name: Move MySQL directory on Data Disk
+      command: mv /var/lib/mysql /perf1/
+
+    - name: Create symlink from Data Disk on to OS
+      command: ln -sf  /per1/mysql /var/lib/mysql
+
+    - name: Start MySQL Service
+      service:
+          name: mysql
+          state: started
+...
