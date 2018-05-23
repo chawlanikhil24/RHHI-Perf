@@ -24,9 +24,9 @@
 
 
 - name: EXECUTING PERFORMANCE RUNS
-  hosts: all
   remote_user: root
-  gather_facts: yes
+  gather_facts: yes 
+  hosts: all 
   tasks:
 
    - name: Importing tasks

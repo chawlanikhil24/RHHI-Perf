@@ -6,10 +6,6 @@
   include_role:
       name: record_stat
 
-- name: include role for gluster-eager-lock-off
-  include_role:
-      name: gluster-eager-lock-off
-
 - name: include role 2
   include_role:
       name: fio_sequential_write
@@ -31,10 +27,6 @@
 - name: include role 5
   include_role:
       name: change_vars_for_random_read
-
-- name: include role for gluster-eager-lock-on
-  include_role:
-      name: gluster-eager-lock-on
 
 - name: include role 6
   include_role:

@@ -11,6 +11,6 @@
 - name: Initiate TOP logs
   shell: 'nohup top -bH -d 10 > "{{ top_dir }}"/"{{ test }}" &'
 
-- name: Initiate NETWORK logs
-  shell: 'nohup sar -n DEV 10 > "{{ network_dir }}"/"{{ test }}" &'
+# - name: Initiate NETWORK logs
+#   shell: 'nohup sar -n DEV 10 > "{{ network_dir }}"/"{{ test }}" &'
 ...
