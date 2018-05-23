@@ -34,10 +34,12 @@
 
     - name: Debug Selinux
       debug:
-          var: reg_var
+          msg: "{{ reg_var.stdout }}"
 
     - name: Creating XFS filesystem on the data disk
-      shell: mkfs.xfs /dev/{{ data_disk }}
+      filesystem:
+          fstype: xfs
+          dev: "{{ data_disk }}"
 
     - name: Create Perf1 Directory
       file:
@@ -45,11 +47,16 @@
         state=directory
 
     - name: Mounting the data disk on the mount point
-      shell: mount /dev/{{ data_disk }} /perf1
+      mount:
+          src: "{{ data_disk }}"
+          path: /perf1
+          state: present
+          fstype: xfs
 
     - name: Create innodb data dir
       file:
           path: /perf1/mysql_data
+          state: directory
 
     - name: Change Permissions of mysql_data
       shell: chmod 777 /perf1/mysql_data
@@ -63,7 +70,7 @@
       command: mv /var/lib/mysql /perf1/
 
     - name: Create symlink from Data Disk on to OS
-      command: ln -sf  /per1/mysql /var/lib/mysql
+      command: ln -sf  /perf1/mysql /var/lib/mysql
 
     - name: Start MySQL Service
       service:
