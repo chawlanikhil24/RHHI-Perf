@@ -1,0 +1,23 @@
+---
+    - debug:
+            var: thread_count
+
+    - name: Record Stat
+      include_role:
+          name: record_stat
+
+    - name: run test
+      include_role:
+          name: run_sysbench_test
+
+    - name: kill stat
+      include_role:
+          name: kill_stat
+
+    - name: Take a 5 second pause
+      shell: sleep 5
+
+    - name: Clear Caches and restart MySQL
+      include_role:
+          name: clear_cache
+...

@@ -1,0 +1,17 @@
+---
+- name: Kill  IOSTAT logs
+  shell: "pkill iostat"
+
+- name: Kill  VMSTAT logs
+  shell: "pkill vmstat"
+
+- name: Kill  MPSTAT logs
+  shell: "pkill mpstat"
+
+- name: Kill  TOP logs
+  shell: "pkill top"
+
+# - name: Kill  sar logs
+#   shell: "pkill sar"
+#   ignore_errors: yes
+...

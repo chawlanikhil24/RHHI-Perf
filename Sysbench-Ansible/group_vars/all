@@ -7,8 +7,15 @@ top_dir: /home/RHHI_PERF_SYSBENCH/top
 vdo_logs: /home/RHHI_PERF_SYSBENCH/vdo
 network_dir: /home/RHHI_PERF_SYSBENCH/network
 
-sysbench_dir: '"{{ workdir_path }}"/sysbench'
-data_disk: /dev/vdb
+sysbench_dir: /home/RHHI_PERF_SYSBENCH/sysbench
+sysbenchVM: 
+sysbench_number_of_table: 1
+sysbench_table_size: 1000
+
+data_disk: 
+mysql_root_password: 
+mysql_table_size: 
 
 gluster_vol_name:
-gluster_host:
+gluster_host: 
+test: 'sysbench.threads_"{{ thread_count }}".buffer_4GB.out'

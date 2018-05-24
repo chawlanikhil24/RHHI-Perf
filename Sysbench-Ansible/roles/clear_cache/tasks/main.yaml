@@ -1,0 +1,11 @@
+---
+- name: Clearing the Pagecache and Slabcache
+  shell: "sync; echo 3 > /proc/sys/vm/drop_caches"
+
+- name: Restarting MySQL to clear the caches
+  delegate_to: "{{ sysbenchVM }}"
+  run_once: true
+  service:
+      name: mysql
+      state: restarted
+...

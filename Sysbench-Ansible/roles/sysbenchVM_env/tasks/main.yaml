@@ -1,10 +1,5 @@
 ---
-    - name: Create Sysbench Directory
-      file:
-        path="{{ sysbench_dir }}"
-        state=directory
-
-    - name: Setup MariDB repo
+    - name: Setup MariaDB repo
       template:
           src: mariadb.repo.j2
           dest: /etc/yum.repos.d/mariadb.repo
@@ -18,6 +13,10 @@
     - name: Install Sysbench package
       shell: yum install sysbench -y
 
+    - name: Start MySQL Service
+      service:
+          name: mysql
+          state: started
 
     - name: Change Selinux Policy to Permissive
       selinux:
@@ -64,11 +63,6 @@
     - name: Change Permissions of mysql_data
       shell: chmod 777 /perf1/mysql_data
 
-    - name: Start MySQL Service
-      service:
-          name: mysql
-          state: started
-
     - name: Stop MySQL Service
       service:
           name: mysql
@@ -99,4 +93,12 @@
       service:
           name: mysql
           state: started
+
+    - name: Set root password
+      command: mysqladmin -u root password "{{ mysql_root_password }}"
+
+    - name: Create Sysbench Directory
+      file:
+          path="{{ sysbench_dir }}"
+          state=directory
 ...

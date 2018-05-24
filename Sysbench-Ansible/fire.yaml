@@ -20,4 +20,31 @@
       roles:
           - sysbenchVM_env
 
+    - name: Switch Off Gluster Eager-lock
+      hosts: glusterhost
+      remote_user: root
+      tasks:
+          - command: gluster vol set "{{ gluster_vol_name }}" cluster.eager-lock off
+
+    - name: Prepare the MariaDB
+      hosts: sysbenchVM
+      remote_user: root
+      roles:
+          - setup_db
+
+    - name: Switch On Gluster Eager-lock
+      hosts: glusterhost
+      remote_user: root
+      tasks:
+          - command: gluster vol set "{{ gluster_vol_name }}" cluster.eager-lock on
+
+    - name: Execution of Sysbench Runs
+      hosts: all
+      remote_user: root
+      tasks:
+
+        - name: Including Sysbench Execution Task
+          include_tasks: sysbench_runs.yaml thread_count="{{ item }}"
+          with_items:
+              - [10,20,40,80,120,140]
 ...
