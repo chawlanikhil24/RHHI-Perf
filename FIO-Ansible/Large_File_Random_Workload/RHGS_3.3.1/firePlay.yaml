@@ -30,7 +30,7 @@
   tasks:
 
    - name: Importing tasks
-     include: fio_runs.yaml iodepth="{{ item[0] }}" dedupe_percentage="{{ item[1] }}"
+     include_tasks: fio_runs.yaml iodepth="{{ item[0] }}" dedupe_percentage="{{ item[1] }}"
      with_nested:
          - [1,4,8,16,32]
          - [0,25,50,75,100]
