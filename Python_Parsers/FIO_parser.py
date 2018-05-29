@@ -21,19 +21,22 @@ def find_bw(file_obj,attributes):
     with open(file_obj) as fio_out:
         for i in fio_out.read().splitlines():
             if ( (i.split("\n")[0].strip(" ").split(" ")[0] == "READ:") or (i.split("\n")[0].strip(" ").split(" ")[0] == "WRITE:") ):
+                io_size = i.split("\n")[0].strip(" ").split(" ")[5].split("=")[1]
+                attributes["io"] = io_size
                 bw = i.split("\n")[0].strip(" ").split(" ")[1].split("=")[1]
                 if bw[-5] == "K":
                     bw_in_KiB = float(bw[:-5])
                     attributes["bw"] = round(bw_in_KiB/1024,2)
                 elif bw[-5] == "M":
                     attributes["bw"] = float(bw[:-5])
+    print attributes
     return attributes
 
 def main():
     list_random_write = []
     list_random_read = []
     list_sequential_write = []
-    headers = ["vdo","op_type","op","iodepth","dedup","bw"]
+    headers = ["vdo","op_type","op","iodepth","dedup","bw","io"]
     for f in glob(directory+"*"):
         filename = f.strip().split("/")[-1:][0]
         attributes = identify_attrs(filename)
@@ -62,3 +65,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
