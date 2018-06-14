@@ -17,8 +17,8 @@ operation: write
 type: sequential
 test: '"{{ type }}"."{{ operation }}".iodepth_"{{ iodepth }}".dedupe_"{{ dedupe_percentage }}".out'
 fio_test_directory: 
-fio_vm:  
-fio_jobs: 4
+fio_vm:
+fio_jobs:
 
-gluster_vol_name: 
-gluster_host: 
+gluster_vol_name:
+gluster_host:

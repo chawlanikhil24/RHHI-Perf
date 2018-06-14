@@ -1,0 +1,6 @@
+---
+- name: Clear all data on the disk
+  run_once: true
+  delegate_to: "{{ fio_vm }}"
+  command: rm -rf '"{{ fio_test_directory }}"/*' 
+...

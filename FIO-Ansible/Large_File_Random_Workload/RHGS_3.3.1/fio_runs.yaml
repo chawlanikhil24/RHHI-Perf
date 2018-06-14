@@ -87,4 +87,12 @@
 - name: include role 15
   include_role:
       name: change_vars_for_seq_write
+
+- name: include role 16
+  include_role:
+      name: clear_fio_data
+
+- name: include role 17
+  include_role:
+      name: clear_cache
 ...

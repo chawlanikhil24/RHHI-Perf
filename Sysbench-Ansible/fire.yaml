@@ -29,8 +29,25 @@
     - name: Prepare the MariaDB
       hosts: sysbenchVM
       remote_user: root
-      roles:
-          - setup_db
+      tasks:
+
+          - include_role:
+              name: record_stat_DB_populate
+
+          - include_role:
+              name: setup_db
+
+          - include_role:
+              name: kill_stat
+
+          - name: Set Variable for DB populate
+            set_fact:
+                test: DB_populate.out
+
+          - include_role:
+              name: capture_vdo_logs
+            when: volume=="vdo"
+
 
     - name: Switch On Gluster Eager-lock
       hosts: glusterhost

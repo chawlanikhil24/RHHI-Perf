@@ -20,4 +20,9 @@
     - name: Clear Caches and restart MySQL
       include_role:
           name: clear_cache
+
+    - name: Capture VDO Logs
+      include_role:
+          name: capture_vdo_logs
+      when: volume=='vdo'
 ...
