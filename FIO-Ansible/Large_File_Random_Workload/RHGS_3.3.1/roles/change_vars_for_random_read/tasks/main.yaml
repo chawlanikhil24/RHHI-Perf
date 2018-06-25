@@ -4,7 +4,7 @@
     operation: "read"
     type: "random"
   when: 
-    - operation == 'write' 
+    - operation == 'read' 
     - type == 'sequential'
 
 - debug:

@@ -1,5 +1,0 @@
----
-- name: Pause for 10 seconds
-  shell: sleep 10
-...
-

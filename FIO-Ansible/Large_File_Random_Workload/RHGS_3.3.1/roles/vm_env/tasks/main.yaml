@@ -7,4 +7,9 @@
   file:
     path="{{ fio_dir }}"
     state=directory
+
+- name: Copying FIO Process Poll program
+  template:
+      src: pid_check.py.j2
+      dest: /root/pid_check.py
 ...

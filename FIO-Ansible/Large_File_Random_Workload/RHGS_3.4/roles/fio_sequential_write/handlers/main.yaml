@@ -1,6 +1,0 @@
----
-- name: change vars
-  set_fact:
-    type: random
-    operation: read
-...

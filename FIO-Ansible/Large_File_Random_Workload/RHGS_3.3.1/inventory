@@ -1,4 +1,9 @@
 
 [vm]
+dhcp159-29.sbu.lab.eng.bos.redhat.com
+dhcp159-137.sbu.lab.eng.bos.redhat.com
 
 [rhhihosts]
+smerf01.sbu.lab.eng.bos.redhat.com
+smerf02.sbu.lab.eng.bos.redhat.com
+smerf03.sbu.lab.eng.bos.redhat.com

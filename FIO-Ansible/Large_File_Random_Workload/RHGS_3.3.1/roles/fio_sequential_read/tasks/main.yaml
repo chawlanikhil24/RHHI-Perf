@@ -1,0 +1,9 @@
+---
+- name: Execute FIO Sequential Read
+  run_once: true
+  delegate_to: "{{ fio_host }}"
+  shell: 'nohup fio --name=sequentialread --ioengine=sync --rw=read  --bs=128k --directory="{{ fio_test_directory }}" --filename_format=f.\$jobnum.\$filenum --filesize=16g --size=16g --numjobs="{{ fio_jobs }}" > "{{ fio_dir }}"/"{{ test }}" &'
+  with_items: "{{ fio_vm }}"
+  loop_control:
+    loop_var: fio_host
+...

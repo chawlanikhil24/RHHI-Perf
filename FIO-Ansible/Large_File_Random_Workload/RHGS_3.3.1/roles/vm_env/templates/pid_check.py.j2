@@ -1,0 +1,13 @@
+from subprocess import check_output
+from time import sleep
+
+def get_pid(name):
+    return check_output(["pidof",name])
+
+while 1:
+        try:
+                get_pid("fio")
+                sleep(120)
+        except:
+                break
+                print "Fio Process over"

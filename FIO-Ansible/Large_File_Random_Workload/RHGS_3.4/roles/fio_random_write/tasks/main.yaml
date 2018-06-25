@@ -1,6 +1,0 @@
----
-- name: Execute FIO Random Write run
-  run_once: true
-  delegate_to: "{{ fio_vm }}"
-  shell: 'fio --name=randomwrite --ioengine=libaio --iodepth="{{ iodepth }}" --rw=randwrite --end_fsync=1 --direct=1 --bs=4k --directory="{{ fio_test_directory }}" --filename_format=f.\$jobnum.\$filenum --filesize=16g --size=16g --time_based=1 --runtime=120 --numjobs="{{ fio_jobs }}" --dedupe_percentage="{{ dedupe_percentage }}" --refill_buffers=1 > "{{ fio_dir }}"/"{{ test }}"'
-...

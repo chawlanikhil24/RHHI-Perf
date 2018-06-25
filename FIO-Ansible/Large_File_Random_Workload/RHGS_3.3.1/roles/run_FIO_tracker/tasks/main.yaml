@@ -1,0 +1,8 @@
+---
+- name: Executing python program
+  run_once: true
+  delegate_to: "{{ fio_host }}"
+  command: python /root/pid_check.py
+  with_items: "{{ fio_vm }}"
+  loop_control:
+    loop_var: fio_host

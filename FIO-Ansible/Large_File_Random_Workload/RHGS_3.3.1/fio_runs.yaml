@@ -6,13 +6,17 @@
   include_role:
       name: record_stat
 
-- name: include role for gluster eager-lock off
-  include_role:
-      name: gluster_eager_lock_off
-
-- name: include role 2
+- name: execute fio sequential writes
   include_role:
       name: fio_sequential_write
+
+- name: Hold for 10 seconds
+  pause:
+    seconds: 10
+
+- name: FIO Process Polling initiated on FIO_VMs
+  include_role:
+        name: run_FIO_tracker
 
 - name: include role for VDO
   hosts: rhhihosts
@@ -32,21 +36,25 @@
   include_role:
       name: change_vars_for_random_read
 
-- name: include role 6
-  include_role:
-      name: sleep_10sec
+- name: Hold for 3 seconds
+  pause:
+    seconds: 3
 
 - name: include role 7
   include_role:
       name: record_stat
 
-- name: include role for gluster eager-lock on
-  include_role:
-      name: gluster_eager_lock_on
-
 - name: include role 8
   include_role:
       name: fio_random_read
+
+- name: Hold for 10 seconds
+  pause:
+    seconds: 10
+
+- name: FIO Process Polling initiated on FIO_VMs
+  include_role:
+        name: run_FIO_tracker
 
 - name: include role 9
   include_role:
@@ -62,9 +70,9 @@
   include_role:
       name: change_vars_for_random_write
 
-- name: include role 11
-  include_role:
-      name: sleep_10sec
+- name: Hold for 10 seconds
+  pause:
+     seconds: 3
 
 - name: include role 12
   include_role:
@@ -73,6 +81,14 @@
 - name: include role 13
   include_role:
       name: fio_random_write
+
+- name: Hold for 10 seconds
+  pause:
+     seconds: 10
+
+- name: FIO Process Polling initiated on FIO_VMs
+  include_role:
+        name: run_FIO_tracker
 
 - name: include role 14
   include_role:

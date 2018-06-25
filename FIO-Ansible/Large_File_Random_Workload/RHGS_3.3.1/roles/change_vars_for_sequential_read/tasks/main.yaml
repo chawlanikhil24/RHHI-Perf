@@ -1,8 +1,8 @@
 ---
-- name: Change the VARS for random read
+- name: Change the VARS for sequential read
   set_fact:
     operation: "read"
-    type: "random"
+    type: "sequential"
   when: 
     - operation == 'write' 
     - type == 'sequential'
