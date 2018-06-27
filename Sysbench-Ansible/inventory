@@ -1,8 +1,7 @@
 [sysbenchVM]
-dhcp159-43.sbu.lab.eng.bos.redhat.com
+
 
 [rhhihosts]
-smerf01.sbu.lab.eng.bos.redhat.com
+
 
 [glusterhost]
-smerf01.sbu.lab.eng.bos.redhat.com

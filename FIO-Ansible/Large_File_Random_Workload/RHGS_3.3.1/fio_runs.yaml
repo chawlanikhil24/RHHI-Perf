@@ -2,13 +2,85 @@
 - debug:
     var: test
 
-- name: include role 1
+- name: Record System Statistics
   include_role:
       name: record_stat
 
 - name: execute fio sequential writes
   include_role:
       name: fio_sequential_write
+
+- name: Hold for 10 seconds
+  pause:
+    seconds: 10
+
+- name: FIO Process Polling initiated on FIO_VMs
+  include_role:
+        name: run_FIO_tracker
+
+- name: include role for VDO
+  hosts: rhhihosts
+  include_role:
+      name: capture_vdo_logs
+  when: volume=='vdo'
+
+- name: Stop Recording Statistics
+  include_role:
+      name: kill_stat
+
+- name: Clear Caches
+  include_role:
+      name: clear_cache
+
+- name: Change Env Vars for Sequential Read
+  include_role:
+      name: change_vars_for_sequential_read
+
+- name: Hold for 3 seconds
+  pause:
+    seconds: 3
+
+- name: Record Statistics
+  include_role:
+      name: record_stat
+
+- name: Execute Fio Sequential Read
+  include_role:
+      name: fio_sequential_read
+
+- name: Hold for 10 seconds
+  pause:
+    seconds: 10
+
+- name: FIO Process Polling initiated on FIO_VMs
+  include_role:
+        name: run_FIO_tracker
+
+- name: Stop Recording Statistics
+  include_role:
+      name: kill_stat
+
+- name: include role for VDO
+  hosts: rhhihosts
+  include_role:
+      name: capture_vdo_logs
+  when: volume=='vdo'
+
+- name: Change Vars for Random Reads
+  include_role:
+      name: change_vars_for_random_read
+
+- name: Hold for 10 seconds
+  pause:
+     seconds: 3
+
+- name: Record Statistics
+  include_role:
+      name: record_stat
+
+- name: execute fio random read
+  include_role:
+      name: fio_random_read
 
 - name: Hold for 10 seconds
   pause:
@@ -34,45 +106,11 @@
 
 - name: include role 5
   include_role:
-      name: change_vars_for_random_read
+      name: change_vars_for_random_write
 
 - name: Hold for 3 seconds
   pause:
     seconds: 3
-
-- name: include role 7
-  include_role:
-      name: record_stat
-
-- name: include role 8
-  include_role:
-      name: fio_random_read
-
-- name: Hold for 10 seconds
-  pause:
-    seconds: 10
-
-- name: FIO Process Polling initiated on FIO_VMs
-  include_role:
-        name: run_FIO_tracker
-
-- name: include role 9
-  include_role:
-      name: kill_stat
-
-- name: include role for VDO
-  hosts: rhhihosts
-  include_role:
-      name: capture_vdo_logs
-  when: volume=='vdo'
-
-- name: include role 10
-  include_role:
-      name: change_vars_for_random_write
-
-- name: Hold for 10 seconds
-  pause:
-     seconds: 3
 
 - name: include role 12
   include_role:
@@ -102,7 +140,7 @@
 
 - name: include role 15
   include_role:
-      name: change_vars_for_seq_write
+      name: change_vars_for_sequential_write
 
 - name: include role 16
   include_role:

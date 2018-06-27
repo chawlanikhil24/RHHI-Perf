@@ -17,8 +17,5 @@ operation: write
 type: sequential
 test: '"{{ type }}"."{{ operation }}".iodepth_"{{ iodepth }}".dedupe_"{{ dedupe_percentage }}".out'
 fio_test_directory: /mnt/test_vol/
-fio_vm: ["dhcp159-29.sbu.lab.eng.bos.redhat.com","dhcp159-137.sbu.lab.eng.bos.redhat.com"]
+fio_vm: []
 fio_jobs: 4
-
-gluster_vol_name: data
-gluster_host: smerf01.sbu.lab.eng.bos.redhat.com
