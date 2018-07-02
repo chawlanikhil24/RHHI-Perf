@@ -1,0 +1,8 @@
+---
+- name: Change the VARS for random IO
+  set_fact:
+    type: "random"
+
+- debug:
+    var: test
+...

@@ -1,0 +1,9 @@
+---
+  - name: Kill the brick
+    delegate_to: "{{ host }}"
+    run_once: true
+    with_items:
+        - "{{ groups['brick_fail_host'] }}"
+    loop_control:
+        loop_var: host
+    shell: 'kill $( cat  /var/run/gluster/vols/"{{ gluster_volume }}"/* )'

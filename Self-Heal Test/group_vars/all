@@ -1,0 +1,26 @@
+---
+iostat_dir: /home/RHHI_Self_heal/iostat
+vmstat_dir: /home/RHHI_Self_heal/vmstat
+mpstat_dir: /home/RHHI_Self_heal/mpstat
+top_dir: /home/RHHI_Self_heal/top
+workdir_path: /home/RHHI_Self_heal
+vdo_logs: /home/RHHI_Self_heal/vdo
+network_dir: /home/RHHI_Self_heal/network
+
+pkg1: fio
+pkg2: sysstat
+
+fio_dir: /home/RHHI_Self_heal/fio
+dedupe_percentage: 50
+iodepth: 16
+operation: write
+type: sequential
+test: '"{{ type }}"."{{ operation }}".iodepth_"{{ iodepth }}".dedupe_"{{ dedupe_percentage }}".out'
+fio_test_directory: /mnt/test_vol/
+
+fio_jobs: 4
+
+timestamp: "before"
+timestamp_file: 'timestamp."{{ timestamp }}".out'
+diskstats_file: 'diskstats."{{ timestamp }}".out'
+gluster_volume:

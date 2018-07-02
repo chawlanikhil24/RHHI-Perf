@@ -1,0 +1,71 @@
+---
+- name: SETTING UP OF WORKING ENVIRONMENT ON ALL
+  hosts: working_hosts
+  gather_facts: yes
+  remote_user: root
+  become: true
+  roles:
+    - common_env
+
+- name: SETTING UP OF WORKING ENVIRONMENT ON Virtual Machine
+  hosts: vm
+  gather_facts: no
+  remote_user: root
+  become: true
+  roles:
+    - vm_env
+
+- name: SETTING UP OF WORKING ENVIRONMENT ON HOSTS
+  hosts: rhhihosts
+  gather_facts: no
+  remote_user: root
+  become: true
+  roles:
+    - rhhihosts_env
+
+- name: Execution of Roles in Sequence
+  remote_user: root
+  gather_facts: yes
+  hosts: all
+  roles:
+   - record_stat
+   - record_disk_status
+   - kill_brick
+   - get_timestamp
+   - fio_sequential_write
+   - change_var_for_timestamp
+   - get_timestamp
+   - record_disk_status
+   - start_self_healing
+
+- name: Execution of Random IO on basis of choice
+  remote_user: root
+  gather_facts: no
+  hosts: all
+  tasks:
+
+        - name: Random Read
+          include_role:
+            name: "{{ roleinput}}"
+          with_items:
+            - fio_random_read
+            - change_vars_for_random_read
+          loop_control:
+            loop_var: roleinput
+          when:
+              - random_IO == "read"
+
+        - name: Random Read
+          include_role:
+            name: "{{ roleinput}}"
+          with_items:
+            - fio_random_write
+            - change_vars_for_random_write
+          loop_control:
+            loop_var: roleinput
+          when:
+              - random_IO == "write"
+
+        - name: Kill All the system statistics
+          include_role:
+              name: kill_stat

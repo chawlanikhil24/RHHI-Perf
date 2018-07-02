@@ -1,0 +1,9 @@
+---
+  - name: force start the volume to initiate Self-healing
+    delegate_to: "{{ fail_host }}"
+    run_once: true
+    with_items:
+        - "{{ groups['brick_fail_host'] }}"
+    loop_control:
+        loop_var: fail_host
+    shell: 'gluster vol start "{{ gluster_volume }}" force'

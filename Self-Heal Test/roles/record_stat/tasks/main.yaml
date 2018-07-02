@@ -1,0 +1,16 @@
+---
+- name: Initiate IOSTAT logs
+  shell: 'nohup iostat -dkxtz -c 10 -N > "{{ iostat_dir }}"/"{{ test }}" &'
+
+- name: Initiate VMSTAT logs
+  shell: 'nohup vmstat -n 10 > "{{ vmstat_dir }}"/"{{ test }}" &'
+
+- name: Initiate MPSTAT logs
+  shell: 'nohup mpstat  -P ALL 10 > "{{ mpstat_dir }}"/"{{ test }}" &'
+
+- name: Initiate TOP logs
+  shell: 'nohup top -bH -d 10 > "{{ top_dir }}"/"{{ test }}" &'
+
+- name: Initiate Network Statistics logs
+  shell: 'nohup sar -n  DEV 5 > "{{ network_dir }}"/"{{ test }}" &'
+...

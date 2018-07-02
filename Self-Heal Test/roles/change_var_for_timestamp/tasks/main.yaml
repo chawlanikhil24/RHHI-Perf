@@ -1,0 +1,9 @@
+---
+  - name: Changing Timestamp fact from before to after
+    set_fact:
+      timestamp: "after"
+    when:
+      - timestamp == 'before'
+
+  - debug:
+      var: timestamp

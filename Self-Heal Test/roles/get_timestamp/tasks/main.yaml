@@ -1,0 +1,9 @@
+---
+  - name: Record The timestamp
+    delegate_to: "{{ rhhihost }}"
+    run_once: true
+    with_items:
+        - "{{ groups['rhhihosts'] }}"
+    loop_control:
+        loop_var: rhhihost
+    shell: 'date +%x_%H:%M:%S:%N | sed "s/\(:[0-9][0-9]\)[0-9]*$/\1/" > "{{ workdir_path }}"/"{{ timestamp_file }}"'

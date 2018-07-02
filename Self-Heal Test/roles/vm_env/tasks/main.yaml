@@ -1,0 +1,11 @@
+---
+- name: Install fio package
+  shell: yum install fio -y
+  register: any_error
+
+- name: Create FIO Directory
+  file:
+    path="{{ fio_dir }}"
+    state=directory
+
+...
