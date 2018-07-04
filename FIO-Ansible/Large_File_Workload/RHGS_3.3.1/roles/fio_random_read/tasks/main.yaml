@@ -3,7 +3,7 @@
   run_once: true
   delegate_to: "{{ fio_host }}"
   shell: 'nohup fio --name=randomread --ioengine=libaio --iodepth="{{ iodepth }}" --rw=randread --direct=1 --bs=4k --directory="{{ fio_test_directory }}" --filename_format=f.\$jobnum.\$filenum --filesize=16g --size=16g --time_based=1 --runtime=120 --numjobs="{{ fio_jobs }}" > "{{ fio_dir }}"/"{{ test }}" &'
-  with_items: "{{ fio_vm }}"
+  with_items: "{{ groups['vm']}}"
   loop_control:
     loop_var: fio_host
 ...

@@ -3,7 +3,7 @@
   run_once: true
   delegate_to: "{{ fio_host }}"
   command: rm -rf '"{{ fio_test_directory }}"/*'
-  with_items: "{{ fio_vm }}"
+  with_items: "{{ groups['vm'] }}"
   loop_control:
-    loop_var: fio_host 
+    loop_var: fio_host
 ...
