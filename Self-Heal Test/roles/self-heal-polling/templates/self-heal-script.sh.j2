@@ -1,0 +1,16 @@
+#!/bin/bash
+
+sleep 10
+
+while true;do
+  output=$(gluster vol heal {{ gluster_volume }} statistics | grep progress)
+  #echo $output
+  if [[ -z $output ]] ;then
+    gluster vol heal {{ gluster_volume }} statistics > /home/RHHI_Self_heal/HEALING_STATISTICS.out
+    break
+  fi
+  sleep 10
+done
+
+echo "Healing Done"
+date +%x_%H:%M:%S:%N | sed "s/\(:[0-9][0-9]\)[0-9]*$/\1/" > /home/RHHI_Self_heal/HEALING_FINISHED_TIME.output

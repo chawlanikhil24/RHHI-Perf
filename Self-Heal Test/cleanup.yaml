@@ -1,0 +1,9 @@
+---
+  - name: Cleanup Self-Heal Play Records
+    hosts: all
+    user: root
+    gather_facts: no
+    tasks:
+
+        - name: Delete Working directory
+          command: rm -rf /home/RHHI_Self_heal

@@ -1,0 +1,10 @@
+---
+
+  - debug:
+      msg: 'Time Stamp file is : "{{ timestamp_file }}" || Disk Stats file is : "{{ diskstats_file }}"'
+
+  - name: Record The timestamp
+    shell: 'date +%x_%H:%M:%S:%N | sed "s/\(:[0-9][0-9]\)[0-9]*$/\1/" > "{{ workdir_path }}"/"{{ timestamp_file }}"'
+
+  - name: Record Disk Status
+    shell: 'df -hT > "{{ workdir_path }}"/"{{ diskstats_file }}"'

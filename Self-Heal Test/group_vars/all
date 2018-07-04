@@ -21,6 +21,7 @@ fio_test_directory: /mnt/test_vol/
 fio_jobs: 4
 
 timestamp: "before"
-timestamp_file: 'timestamp."{{ timestamp }}".out'
-diskstats_file: 'diskstats."{{ timestamp }}".out'
-gluster_volume:
+timestamp_file: 'timestamp."{{ timestamp }}".sequential_write.out'
+diskstats_file: 'diskstats."{{ timestamp }}".sequential_write.out'
+vdostats_file: 'vdostats."{{ timestamp }}".sequential_write.out'
+gluster_volume: data

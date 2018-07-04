@@ -1,18 +1,20 @@
 ---
-  - name: force start the volume to initiate Self-healing
+  - name: Transfer the polling script
     delegate_to: "{{ fail_host }}"
     run_once: true
     with_items:
         - "{{ groups['brick_fail_host'] }}"
     loop_control:
         loop_var: fail_host
-    shell: 'gluster vol start "{{ gluster_volume }}" force'
+    template:
+        src: self-heal-script.sh.j2
+        dest: /home/RHHI_Self_heal/self-heal-script.sh
 
-  - name: force start the volume to initiate Self-healing
+  - name: Staring the polling in Async Mode
     delegate_to: "{{ fail_host }}"
     run_once: true
     with_items:
         - "{{ groups['brick_fail_host'] }}"
     loop_control:
         loop_var: fail_host
-    shell: 'gluster vol start "{{ gluster_volume }}" force'
+    shell: 'nohup sh /home/RHHI_Self_heal/self-heal-script.sh > nohup.out &'

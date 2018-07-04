@@ -28,15 +28,16 @@
   gather_facts: yes
   hosts: all
   roles:
+   - capture_vdo_stats_1
    - record_stat
-   - record_disk_status
+   - get_timestamp_and_diskstatus_1
    - kill_brick
-   - get_timestamp
    - fio_sequential_write
    - change_var_for_timestamp
-   - get_timestamp
-   - record_disk_status
+   - capture_vdo_stats_2
+   - get_timestamp_and_diskstatus_2
    - start_self_healing
+   - self-heal-polling
 
 - name: Execution of Random IO on basis of choice
   remote_user: root
@@ -49,7 +50,6 @@
             name: "{{ roleinput}}"
           with_items:
             - fio_random_read
-            - change_vars_for_random_read
           loop_control:
             loop_var: roleinput
           when:
@@ -60,7 +60,6 @@
             name: "{{ roleinput}}"
           with_items:
             - fio_random_write
-            - change_vars_for_random_write
           loop_control:
             loop_var: roleinput
           when:

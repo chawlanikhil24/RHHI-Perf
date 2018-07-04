@@ -1,4 +1,11 @@
 ---
+- name: Change the VARS for random IO
+  set_fact:
+    type: "random"
+
+- debug:
+    var: test
+
 - name: Execute FIO Random IO
   delegate_to: "{{ fio_vm }}"
   run_once: true
