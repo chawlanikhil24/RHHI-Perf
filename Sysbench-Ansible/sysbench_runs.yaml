@@ -10,6 +10,10 @@
       include_role:
           name: run_sysbench_test
 
+    - name: poll the sysbench test
+      include_role:
+          name: polling_sysbench
+
     - name: kill stat
       include_role:
           name: kill_stat

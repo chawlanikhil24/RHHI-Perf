@@ -3,8 +3,11 @@
   shell: "sync; echo 3 > /proc/sys/vm/drop_caches"
 
 - name: Restarting MySQL to clear the caches
-  delegate_to: "{{ sysbenchVM }}"
+  delegate_to: "{{ sysbench_host }}"
   run_once: true
+  with_items: "{{ groups['sysbenchVM'] }}"
+  loop_control:
+    loop_var: sysbench_host
   service:
       name: mysql
       state: restarted

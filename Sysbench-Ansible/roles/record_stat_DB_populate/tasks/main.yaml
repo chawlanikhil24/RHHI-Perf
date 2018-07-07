@@ -1,14 +1,38 @@
 ---
 - name: Initiate IOSTAT logs
+  delegate_to: "{{ host }}"
+  run_once: true
+  with_items:
+      - "{{ groups['combined'] }}"
+  loop_control:
+    loop_var: host
   shell: 'nohup iostat -dkxtz -c 10 > "{{ iostat_dir }}"/DB_populate.out &'
 
 - name: Initiate VMSTAT logs
+  delegate_to: "{{ host }}"
+  run_once: true
+  with_items:
+      - "{{ groups['combined'] }}"
+  loop_control:
+    loop_var: host
   shell: 'nohup vmstat -n 10 > "{{ vmstat_dir }}"/DB_populate.out &'
 
 - name: Initiate MPSTAT logs
+  delegate_to: "{{ host }}"
+  run_once: true
+  with_items:
+      - "{{ groups['combined'] }}"
+  loop_control:
+    loop_var: host
   shell: 'nohup mpstat  -P ALL 10 > "{{ mpstat_dir }}"/DB_populate.out &'
 
 - name: Initiate TOP logs
+  delegate_to: "{{ host }}"
+  run_once: true
+  with_items:
+      - "{{ groups['combined'] }}"
+  loop_control:
+    loop_var: host
   shell: 'nohup top -bH -d 10 > "{{ top_dir }}"/DB_populate.out &'
 
 # - name: Initiate NETWORK logs

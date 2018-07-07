@@ -1,4 +1,8 @@
 ---
+
+- debug:
+    var: test
+
 - name: Initiate IOSTAT logs
   shell: 'nohup iostat -dkxtz -c 10 > "{{ iostat_dir }}"/"{{ test }}" &'
 

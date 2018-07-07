@@ -1,67 +1,60 @@
 ---
-    - name: Setting up of Environment on all
-      hosts: all
-      remote_user: root
-      become: true
-      roles:
-          - common_env
-
-    - name: Setting up of Environment on all
-      hosts: rhhihosts
-      remote_user: root
-      become: true
-      roles:
-          - rhhihosts_env
+    # - name: Setting up of Environment on all
+    #   hosts: all
+    #   remote_user: root
+    #   become: true
+    #   roles:
+    #       - common_env
+    #
+    # - name: Setting up of Environment on all
+    #   hosts: rhhihosts
+    #   remote_user: root
+    #   become: true
+    #   roles:
+    #       - rhhihosts_env
 
     - name: Setting up of Environment on VM
       hosts: sysbenchVM
       remote_user: root
       become: true
-      roles:
-          - sysbenchVM_env
-
-    - name: Switch Off Gluster Eager-lock
-      hosts: glusterhost
-      remote_user: root
       tasks:
-          - command: gluster vol set "{{ gluster_vol_name }}" cluster.eager-lock off
+          - include_role:
+              name: sysbenchVM_env
 
-    - name: Prepare the MariaDB
-      hosts: sysbenchVM
-      remote_user: root
-      tasks:
+          - name: record DB populate start time
+            shell: 'date +%x_%H:%M:%S:%N | sed "s/\(:[0-9][0-9]\)[0-9]*$/\1/" > /home/RHHI_PERF_SYSBENCH/DB_POP_Start.out'
+
+          - include_role:
+              name: capture_vdo_logs_before
+            when: volume=="vdo"
 
           - include_role:
               name: record_stat_DB_populate
 
+          - name: record DB populate stop time
+            shell: 'date +%x_%H:%M:%S:%N | sed "s/\(:[0-9][0-9]\)[0-9]*$/\1/" > /home/RHHI_PERF_SYSBENCH/DB_POP_Stop.out'
+
           - include_role:
               name: setup_db
-
-          - include_role:
-              name: kill_stat
-
-          - name: Set Variable for DB populate
-            set_fact:
-                test: DB_populate.out
-
-          - include_role:
-              name: capture_vdo_logs
-            when: volume=="vdo"
-
-
-    - name: Switch On Gluster Eager-lock
-      hosts: glusterhost
-      remote_user: root
-      tasks:
-          - command: gluster vol set "{{ gluster_vol_name }}" cluster.eager-lock on
 
     - name: Execution of Sysbench Runs
       hosts: all
       remote_user: root
       tasks:
 
+        - include_role:
+            name: capture_vdo_logs_after
+          when: volume=="vdo"
+
+        - include_role:
+            name: kill_stat
+
+        - include_role:
+            name: capture_vdo_logs
+          when: volume=="vdo"
+
         - name: Including Sysbench Execution Task
           include_tasks: sysbench_runs.yaml thread_count="{{ item }}"
           with_items:
-              - [10,20,40,80,120,140]
+              - [10,20]
 ...

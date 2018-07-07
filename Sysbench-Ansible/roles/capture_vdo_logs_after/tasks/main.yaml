@@ -1,0 +1,29 @@
+---
+- name: Capture VDO STATUS -n <VDO_VOLUME_NAME>
+  delegate_to: "{{ host }}"
+  run_once: true
+  with_items:
+      - "{{ groups['rhhihosts'] }}"
+  loop_control:
+    loop_var: host
+  shell: 'vdo status -n "{{ vdo_volume_name }}" > "{{ vdo_logs }}"/vdo_status/DB_POPULATE_after.out'
+  ignore_errors: yes
+
+- name: Capture VDOSTATS --hu
+  delegate_to: "{{ host }}"
+  run_once: true
+  with_items:
+      - "{{ groups['rhhihosts'] }}"
+  loop_control:
+    loop_var: host
+  shell: 'vdostats --hu  > "{{ vdo_logs }}"/vdo_stats/DB_POPULATE_after.out &'
+
+- name: Capture VDOSTATS --verbose|grep bios|egrep -v 'par|co|ack|pr|use|f'
+  delegate_to: "{{ host }}"
+  run_once: true
+  with_items:
+      - "{{ groups['rhhihosts'] }}"
+  loop_control:
+    loop_var: host
+  shell: 'vdo status -n "{{ vdo_volume_name }}" > "{{ vdo_logs }}"/vdo_bio/DB_POPULATE_after.out &'
+...

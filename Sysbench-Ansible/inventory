@@ -1,7 +1,7 @@
 [sysbenchVM]
 
-
 [rhhihosts]
 
-
-[glusterhost]
+[combined:children]
+sysbenchVM
+rhhihosts

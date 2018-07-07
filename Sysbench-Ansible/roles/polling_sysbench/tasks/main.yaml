@@ -1,0 +1,9 @@
+---
+    - name: running test
+      delegate_to: "{{ sysbench_host }}"
+      run_once: true
+      shell: 'sh /home/RHHI_PERF_SYSBENCH/polling_script.sh'
+      with_items: "{{ groups['sysbenchVM'] }}"
+      loop_control:
+        loop_var: sysbench_host
+...
