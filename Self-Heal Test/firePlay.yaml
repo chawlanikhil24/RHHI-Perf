@@ -1,6 +1,6 @@
 ---
 - name: SETTING UP OF WORKING ENVIRONMENT ON ALL
-  hosts: working_hosts
+  hosts: all
   gather_facts: yes
   remote_user: root
   become: true
@@ -32,7 +32,7 @@
    - record_stat
    - get_timestamp_and_diskstatus_1
    - kill_brick
-   - fio_sequential_write
+   - run_small_file
    - change_var_for_timestamp
    - capture_vdo_stats_2
    - get_timestamp_and_diskstatus_2

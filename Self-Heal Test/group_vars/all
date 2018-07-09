@@ -18,10 +18,20 @@ type: sequential
 test: '"{{ type }}"."{{ operation }}".iodepth_"{{ iodepth }}".dedupe_"{{ dedupe_percentage }}".out'
 fio_test_directory: /mnt/test_vol/
 
-fio_jobs: 4
+fio_jobs:
 
 timestamp: "before"
 timestamp_file: 'timestamp."{{ timestamp }}".sequential_write.out'
 diskstats_file: 'diskstats."{{ timestamp }}".sequential_write.out'
 vdostats_file: 'vdostats."{{ timestamp }}".sequential_write.out'
 gluster_volume: data
+
+#SMALLFILE OPTIONS
+sf_file_size:
+sf_files:
+sf_threads:
+
+#ANSIBLE OPTIONS
+ansible_connection: ssh
+ansible_ssh_user: root
+ansible_ssh_pass: 100yard-

@@ -1,0 +1,22 @@
+---
+- name: Execute FIO Small File Tool
+  delegate_to: "{{ vm }}"
+  run_once: true
+  with_items:
+      - "{{ groups['vm'] }}"
+  loop_control:
+      loop_var: vm
+  shell: 'python smallfile_cli.py --operation create --threads "{{ sf_threads }}"  --file-size "{{ sf_file_size }}" --files "{{ sf_files }}" --top "{{ fio_test_directory }}" > "{{ fio_dir }}"/"{{ test }}"'
+  args:
+    chdir: /root/smallfile/
+  register: result
+
+- delegate_to: "{{ vm }}"
+  run_once: true
+  with_items:
+    - "{{ groups['vm'] }}"
+  loop_control:
+    loop_var: vm
+  debug:
+    var: result
+...

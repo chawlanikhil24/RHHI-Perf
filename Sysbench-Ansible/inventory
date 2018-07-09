@@ -1,7 +1,0 @@
-[sysbenchVM]
-
-[rhhihosts]
-
-[combined:children]
-sysbenchVM
-rhhihosts

@@ -1,17 +1,17 @@
 ---
-    # - name: Setting up of Environment on all
-    #   hosts: all
-    #   remote_user: root
-    #   become: true
-    #   roles:
-    #       - common_env
-    #
-    # - name: Setting up of Environment on all
-    #   hosts: rhhihosts
-    #   remote_user: root
-    #   become: true
-    #   roles:
-    #       - rhhihosts_env
+    - name: Setting up of Environment on all
+      hosts: all
+      remote_user: root
+      become: true
+      roles:
+          - common_env
+
+    - name: Setting up of Environment on all
+      hosts: rhhihosts
+      remote_user: root
+      become: true
+      roles:
+          - rhhihosts_env
 
     - name: Setting up of Environment on VM
       hosts: sysbenchVM
@@ -31,11 +31,11 @@
           - include_role:
               name: record_stat_DB_populate
 
-          - name: record DB populate stop time
-            shell: 'date +%x_%H:%M:%S:%N | sed "s/\(:[0-9][0-9]\)[0-9]*$/\1/" > /home/RHHI_PERF_SYSBENCH/DB_POP_Stop.out'
-
           - include_role:
               name: setup_db
+
+          - name: record DB populate stop time
+            shell: 'date +%x_%H:%M:%S:%N | sed "s/\(:[0-9][0-9]\)[0-9]*$/\1/" > /home/RHHI_PERF_SYSBENCH/DB_POP_Stop.out'
 
     - name: Execution of Sysbench Runs
       hosts: all
@@ -48,6 +48,7 @@
 
         - include_role:
             name: kill_stat
+          ignore_erros: yes
 
         - include_role:
             name: capture_vdo_logs
@@ -56,5 +57,5 @@
         - name: Including Sysbench Execution Task
           include_tasks: sysbench_runs.yaml thread_count="{{ item }}"
           with_items:
-              - [10,20]
+              - [10,20,40,80,120,140]
 ...

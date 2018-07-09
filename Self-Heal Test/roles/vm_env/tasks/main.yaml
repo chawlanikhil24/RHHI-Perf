@@ -8,4 +8,9 @@
     path="{{ fio_dir }}"
     state=directory
 
+- name: Role for Cloning Small file tool
+  git:
+      repo: "https://github.com/bengland2/smallfile.git"
+      dest: /root/smallfile
+      clone: yes
 ...
