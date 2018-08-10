@@ -6,6 +6,8 @@ top_dir: /home/RHHI_PERF/top
 workdir_path: /home/RHHI_PERF
 vdo_logs: /home/RHHI_PERF/vdo
 network_dir: /home/RHHI_PERF/network
+pidstat_dir_1: /home/RHHI_PERF/pidstat_per_process_diskstat #per_disk_memory_usage
+pidstat_dir_2: /home/RHHI_PERF/pidstat_per_process_rss #per_process_memory_usage
 
 pkg1: fio
 pkg2: sysstat
@@ -17,4 +19,4 @@ operation: write
 type: sequential
 test: '"{{ type }}"."{{ operation }}".iodepth_"{{ iodepth }}".dedupe_"{{ dedupe_percentage }}".out'
 fio_test_directory:
-fio_jobs: 
+fio_jobs:

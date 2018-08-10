@@ -28,4 +28,19 @@
   file:
     path="{{ top_dir }}"
     state=directory
+
+- name: Create Pidstat_1 Directory
+  file:
+    path="{{ pidstat_dir_1 }}"
+    state=directory
+
+- name: Create Pidstat_2 Directory
+  file:
+    path="{{ pidstat_dir_2 }}"
+    state=directory
+
+- name: Create Network Directory
+  file:
+    path="{{ network_dir }}"
+    state=directory
 ...

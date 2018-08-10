@@ -11,6 +11,12 @@
 - name: Initiate TOP logs
   shell: 'nohup top -bH -d 10 > "{{ top_dir }}"/"{{ test }}" &'
 
-# - name: Initiate NETWORK logs
-#   shell: 'nohup sar -n DEV 10 > "{{ network_dir }}"/"{{ test }}" &'
+- name: Initiate NETWORK logs
+  shell: 'nohup sar -n DEV 10 > "{{ network_dir }}"/"{{ test }}" &'
+
+- name: Initiate PIDSTAT logs
+  shell: 'nohup pidstat -ud 3 > "{{ pidstat_dir_1 }}"/"{{ test }}" &'
+
+- name: Initiate PIDSTAT logs
+  shell: 'nohup pidstat -urh 3 > "{{ pidstat_dir_2 }}"/"{{ test }}" &'
 ...

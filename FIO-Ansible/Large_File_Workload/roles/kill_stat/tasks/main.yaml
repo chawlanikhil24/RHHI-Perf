@@ -11,7 +11,9 @@
 - name: Kill  TOP logs
   shell: "pkill top"
 
-# - name: Kill  sar logs
-#   shell: "pkill sar"
-#   ignore_errors: yes
+- name: Kill  sar logs
+  shell: "pkill sar"
+
+- name: Kill  pidstat logs
+  shell: "pkill pidstat"
 ...
