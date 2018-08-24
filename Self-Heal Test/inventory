@@ -1,0 +1,9 @@
+[vm]
+
+[rhhihosts]
+
+[working_hosts:children]
+vm
+rhhihosts
+
+[brick_fail_host]
