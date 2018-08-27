@@ -6,25 +6,26 @@ top_dir: /home/RHHI_Self_heal/top
 workdir_path: /home/RHHI_Self_heal
 vdo_logs: /home/RHHI_Self_heal/vdo
 network_dir: /home/RHHI_Self_heal/network
+pidstat_dir_1: /home/RHHI_Self_heal/pidstat_per_process_diskstat #per_disk_memory_usage
+pidstat_dir_2: /home/RHHI_Self_heal/pidstat_per_process_rss #per_process_memory_usage
 
 pkg1: fio
 pkg2: sysstat
 
 fio_dir: /home/RHHI_Self_heal/fio
-dedupe_percentage: 50
-iodepth: 16
 operation: write
 type: sequential
 test: '"{{ type }}"."{{ operation }}".iodepth_"{{ iodepth }}".dedupe_"{{ dedupe_percentage }}".out'
-fio_test_directory: /mnt/test_vol/
-
+fio_test_directory:
+dedupe_percentage:
 fio_jobs:
+iodepth:
 
 timestamp: "before"
 timestamp_file: 'timestamp."{{ timestamp }}".sequential_write.out'
 diskstats_file: 'diskstats."{{ timestamp }}".sequential_write.out'
 vdostats_file: 'vdostats."{{ timestamp }}".sequential_write.out'
-gluster_volume: data
+gluster_volume:
 
 #SMALLFILE OPTIONS
 sf_file_size:
@@ -33,5 +34,5 @@ sf_threads:
 
 #ANSIBLE OPTIONS
 ansible_connection: ssh
-ansible_ssh_user: root
-ansible_ssh_pass: 100yard-
+ansible_ssh_user:
+ansible_ssh_pass:

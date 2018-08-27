@@ -14,3 +14,4 @@ done
 
 echo "Healing Done"
 date +%x_%H:%M:%S:%N | sed "s/\(:[0-9][0-9]\)[0-9]*$/\1/" > /home/RHHI_Self_heal/HEALING_FINISHED_TIME.output
+gluster vol profile ssd info > /home/RHHI_Self_heal/self_heal_profile.output

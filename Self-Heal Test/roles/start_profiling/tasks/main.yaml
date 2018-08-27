@@ -1,0 +1,12 @@
+---
+- name: Stop Profiling if running
+  run_once: true
+  delegate_to: "{{ groups['rhhihosts'][0] }}"
+  shell: 'gluster vol profile "{{ gluster_volume }}" stop'
+  ignore_errors: yes
+
+- name: Start Profiling
+  run_once: true
+  delegate_to: "{{ groups['rhhihosts'][0] }}"
+  shell: 'gluster vol profile "{{ gluster_volume }}" start'
+...

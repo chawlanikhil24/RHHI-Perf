@@ -13,4 +13,11 @@
 
 - name: Initiate Network Statistics logs
   shell: 'nohup sar -n  DEV 5 > "{{ network_dir }}"/"{{ test }}" &'
+
+- name: Initiate PIDSTAT logs
+  shell: 'nohup pidstat -d 3 > "{{ pidstat_dir_1 }}"/"{{ test }}" &'
+
+- name: Initiate PIDSTAT logs
+  shell: 'nohup pidstat -urh 3 > "{{ pidstat_dir_2 }}"/"{{ test }}" &'
+
 ...

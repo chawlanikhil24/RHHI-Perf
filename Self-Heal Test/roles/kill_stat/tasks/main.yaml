@@ -13,4 +13,9 @@
 
 - name: Kill  sar logs
   shell: "pkill sar"
+  ignore_errors: yes
+
+- name: Kill  pidstat logs
+  shell: "pkill pidstat"
+  ignore_errors: yes
 ...

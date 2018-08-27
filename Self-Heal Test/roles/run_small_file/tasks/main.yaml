@@ -10,6 +10,8 @@
   args:
     chdir: /root/smallfile/
   register: result
+  when:
+      - random_IO == "write"
 
 - delegate_to: "{{ vm }}"
   run_once: true
@@ -19,4 +21,6 @@
     loop_var: vm
   debug:
     var: result
+  when:
+      - random_IO == "write"
 ...

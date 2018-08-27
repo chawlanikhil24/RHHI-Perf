@@ -33,9 +33,11 @@
    - get_timestamp_and_diskstatus_1
    - kill_brick
    - run_small_file
+   - fio_sequential_write
    - change_var_for_timestamp
    - capture_vdo_stats_2
    - get_timestamp_and_diskstatus_2
+   - start_profiling
    - start_self_healing
    - self-heal-polling
 
