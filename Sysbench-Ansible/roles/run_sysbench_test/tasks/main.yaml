@@ -2,7 +2,7 @@
     - name: running test
       delegate_to: "{{ sysbench_host }}"
       run_once: true
-      shell: 'nohup sysbench --db-driver=mysql --mysql-user=root --mysql-password="{{ mysql_root_password }}"  --mysql-db=sbtest --table_size="{{ sysbench_table_size }}" --tables="{{ sysbench_number_of_table }}"  --threads="{{ thread_count }}" /usr/share/sysbench/oltp_read_write.lua run > "{{ sysbench_dir }}"/"{{ test }}" &'
+      shell: 'nohup sysbench --db-driver=mysql --mysql-user=root --mysql-password="{{ mysql_root_password }}"  --time=300 --mysql-db=sbtest --table_size="{{ sysbench_table_size }}" --tables="{{ sysbench_number_of_table }}"  --threads="{{ thread_count }}" /usr/share/sysbench/oltp_read_write.lua run > "{{ sysbench_dir }}"/"{{ test }}" &'
       with_items: "{{ groups['sysbenchVM'] }}"
       loop_control:
         loop_var: sysbench_host
