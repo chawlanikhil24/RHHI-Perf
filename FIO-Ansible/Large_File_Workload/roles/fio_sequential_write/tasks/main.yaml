@@ -2,7 +2,7 @@
 - name: Execute FIO Sequential Write
   run_once: true
   delegate_to: "{{ fio_host }}"
-  shell: 'nohup fio --name=initialwrite --ioengine=sync --rw=write --direct=0 --create_on_open=1 --fsync_on_close=1 --bs=128k --directory="{{ fio_test_directory }}" --filename_format=f.\$jobnum.\$filenum --filesize=16g --size=16g --numjobs="{{ fio_jobs }}" --dedupe_percentage="{{ dedupe_percentage }}" --refill_buffers=1 > "{{ fio_dir }}"/"{{ test }}" &'
+  shell: 'nohup fio --name=initialwrite --ioengine=sync --rw=write --direct=0 --create_on_open=1 --end_fsync=1 --bs=128k --directory="{{ fio_test_directory }}" --filename_format=f.\$jobnum.\$filenum --filesize=16g --size=16g --numjobs="{{ fio_jobs }}" --dedupe_percentage="{{ dedupe_percentage }}" --refill_buffers=1 > "{{ fio_dir }}"/"{{ test }}" &'
   with_items: "{{ groups['vm'] }}"
   loop_control:
     loop_var: fio_host
