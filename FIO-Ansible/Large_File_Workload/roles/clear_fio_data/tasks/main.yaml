@@ -2,7 +2,7 @@
 - name: Clear all data on the disk
   run_once: true
   delegate_to: "{{ fio_host }}"
-  command: rm -rf '"{{ fio_test_directory }}"/*'
+  command: rm -rf '"{{ fio_test_directory }}"/"{{ fio_host }}"'
   with_items: "{{ groups['vm'] }}"
   loop_control:
     loop_var: fio_host

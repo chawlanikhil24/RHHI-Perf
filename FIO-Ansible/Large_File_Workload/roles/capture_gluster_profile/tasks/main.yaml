@@ -1,0 +1,5 @@
+---
+- run_once: true
+  delegate_to: "{{ groups['profiling_host'][0] }}"
+  shell:  'gluster vol profile "{{ gluster_vol }}" info > "{{ workdir_path }}"/"{{ test }}"'
+...

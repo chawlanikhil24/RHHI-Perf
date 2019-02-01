@@ -1,12 +1,21 @@
 ---
 - name: Install fio package
-  shell: yum install fio -y
-  register: any_error
+  yum:
+    state: present
+    name:
+       - fio
 
 - name: Create FIO Directory
   file:
     path="{{ fio_dir }}"
     state=directory
+
+- name: Create FIO Directory
+  file:
+    path="{{ fio_dir }}"/"{{ item }}"
+    state=directory
+  loop:
+    - groups["vm"]
 
 - name: Copying FIO Process Poll program
   template:

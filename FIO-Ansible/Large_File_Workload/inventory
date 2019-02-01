@@ -2,3 +2,8 @@
 [vm]
 
 [rhhihosts]
+
+[profiling_host]
+
+
+[all:vars]

@@ -1,0 +1,7 @@
+---
+- run_once: true
+  delegate_to: "{{ groups['profiling_host'][0] }}"
+  shell: >
+        'setfattr -n trusted.io-stats-dump -v <path-where-you-want-profile-saved>
+         $RHEV's_GLUSTER_MOUNTPOINT'
+...

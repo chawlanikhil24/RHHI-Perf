@@ -1,46 +1,22 @@
 ---
 - name: Install sysstat package
-  shell: yum install sysstat -y
   become: true
   remote_user: root
+  yum:
+      state: present
+      name:
+          - sysstat
 
-- name: Create Working Directory
-  file:
-    path="{{ workdir_path }}"
+- file:
+    path="{{ item }}"
     state=directory
-
-- name: Create Iostat Directory
-  file:
-    path="{{ iostat_dir }}"
-    state=directory
-
-- name: Create Mpstat Directory
-  file:
-    path="{{ mpstat_dir }}"
-    state=directory
-
-- name: Create Vmstat Directory
-  file:
-    path="{{ vmstat_dir }}"
-    state=directory
-
-- name: Create top Directory
-  file:
-    path="{{ top_dir }}"
-    state=directory
-
-- name: Create Pidstat_1 Directory
-  file:
-    path="{{ pidstat_dir_1 }}"
-    state=directory
-
-- name: Create Pidstat_2 Directory
-  file:
-    path="{{ pidstat_dir_2 }}"
-    state=directory
-
-- name: Create Network Directory
-  file:
-    path="{{ network_dir }}"
-    state=directory
+  loop:
+    - workdir_path
+    - iostat_dir
+    - vmstat_dir
+    - mpstat_dir
+    - network_dir
+    - top_dir
+    - pidstat_dir_1
+    - pidstat_dir_2
 ...

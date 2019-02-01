@@ -6,3 +6,6 @@
   with_items: "{{ groups['vm'] }}"
   loop_control:
     loop_var: fio_host
+  register: output
+
+- debug: var=output

@@ -2,6 +2,10 @@
 - debug:
     var: test
 
+- name: Start Gluster Profiling
+  include_role:
+      name: start_gluster_profile
+
 - name: Record System Statistics
   include_role:
       name: record_stat
@@ -23,6 +27,10 @@
   include_role:
       name: capture_vdo_logs
   when: volume=='vdo'
+
+- name: Capture Gluster Profiling
+  include_role:
+      name: capture_gluster_profile
 
 - name: Stop Recording Statistics
   include_role:
@@ -56,12 +64,15 @@
   include_role:
         name: run_FIO_tracker
 
+- name: Capture Gluster Profiling
+  include_role:
+      name: capture_gluster_profile
+
 - name: Stop Recording Statistics
   include_role:
       name: kill_stat
 
 - name: include role for VDO
-  hosts: rhhihosts
   include_role:
       name: capture_vdo_logs
   when: volume=='vdo'
@@ -90,34 +101,33 @@
   include_role:
         name: run_FIO_tracker
 
+- name: Capture Gluster Profiling
+  include_role:
+      name: capture_gluster_profile
+
 - name: include role for VDO
   hosts: rhhihosts
   include_role:
       name: capture_vdo_logs
   when: volume=='vdo'
 
-- name: include role 3
-  include_role:
+- include_role:
       name: kill_stat
 
-- name: include role 4
-  include_role:
+- include_role:
       name: clear_cache
 
-- name: include role 5
-  include_role:
+- include_role:
       name: change_vars_for_random_write
 
 - name: Hold for 3 seconds
   pause:
     seconds: 3
 
-- name: include role 12
-  include_role:
+- include_role:
       name: record_stat
 
-- name: include role 13
-  include_role:
+- include_role:
       name: fio_random_write
 
 - name: Hold for 10 seconds
@@ -128,25 +138,23 @@
   include_role:
         name: run_FIO_tracker
 
-- name: include role 14
+- name: Capture Gluster Profiling
   include_role:
+      name: capture_gluster_profile
+
+- include_role:
       name: kill_stat
 
-- name: include role for VDO
-  hosts: rhhihosts
-  include_role:
+- include_role:
       name: capture_vdo_logs
   when: volume=='vdo'
 
-- name: include role 15
-  include_role:
+- include_role:
       name: change_vars_for_sequential_write
 
-- name: include role 16
-  include_role:
+- include_role:
       name: clear_fio_data
 
-- name: include role 17
-  include_role:
+- include_role:
       name: clear_cache
 ...

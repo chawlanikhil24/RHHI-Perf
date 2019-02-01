@@ -20,3 +20,8 @@ type: sequential
 test: '"{{ type }}"."{{ operation }}".iodepth_"{{ iodepth }}".dedupe_"{{ dedupe_percentage }}".out'
 fio_test_directory:
 fio_jobs:
+fio_file_size:
+fio_job_size:
+
+
+gluster_vol:  
