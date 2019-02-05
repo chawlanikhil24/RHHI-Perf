@@ -14,14 +14,14 @@ pkg2: sysstat
 
 fio_dir: /home/RHHI_PERF/fio
 dedupe_percentage: 0
-iodepth: 1
+iodepth: 16
 operation: write
 type: sequential
-test: '"{{ type }}"."{{ operation }}".iodepth_"{{ iodepth }}".dedupe_"{{ dedupe_percentage }}".out'
-fio_test_directory:
-fio_jobs:
-fio_file_size:
-fio_job_size:
+test: '"{{ type }}"."{{ operation }}".iodepth_"{{ iodepth }}".out'
+fio_test_directory: 
+fio_jobs: 
+fio_file_size: 
+fio_job_size: 
 
 
-gluster_vol:  
+gluster_vol: 

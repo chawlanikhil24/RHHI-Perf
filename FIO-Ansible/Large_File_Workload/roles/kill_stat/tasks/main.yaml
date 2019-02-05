@@ -9,4 +9,5 @@
     - pidstat
   loop_control:
     loop_var: process
+  ignore_errors: yes
 ...

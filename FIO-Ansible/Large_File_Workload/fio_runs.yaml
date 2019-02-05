@@ -2,6 +2,9 @@
 - debug:
     var: test
 
+- include_role:
+      name: create_fio_test_dir
+
 - name: Start Gluster Profiling
   include_role:
       name: start_gluster_profile
@@ -23,7 +26,6 @@
         name: run_FIO_tracker
 
 - name: include role for VDO
-  hosts: rhhihosts
   include_role:
       name: capture_vdo_logs
   when: volume=='vdo'
@@ -106,7 +108,6 @@
       name: capture_gluster_profile
 
 - name: include role for VDO
-  hosts: rhhihosts
   include_role:
       name: capture_vdo_logs
   when: volume=='vdo'

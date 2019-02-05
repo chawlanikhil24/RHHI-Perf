@@ -10,13 +10,6 @@
     path="{{ fio_dir }}"
     state=directory
 
-- name: Create FIO Directory
-  file:
-    path="{{ fio_dir }}"/"{{ item }}"
-    state=directory
-  loop:
-    - groups["vm"]
-
 - name: Copying FIO Process Poll program
   template:
       src: pid_check.py.j2

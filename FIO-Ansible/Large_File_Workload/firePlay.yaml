@@ -25,12 +25,12 @@
 
 - name: EXECUTING PERFORMANCE RUNS
   remote_user: root
-  gather_facts: yes
-  hosts: all
+  gather_facts: no
+  hosts: child_hosts
   tasks:
 
    - name: Importing tasks
-     include_tasks: fio_runs.yaml iodepth="{{ item[0] }}" dedupe_percentage="{{ item[1] }}"
+     include_tasks: fio_runs.yaml
      with_nested:
          - [16]
          - [0]

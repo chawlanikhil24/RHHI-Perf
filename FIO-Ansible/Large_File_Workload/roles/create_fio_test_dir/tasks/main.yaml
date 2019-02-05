@@ -1,8 +1,9 @@
 ---
-- name: Clear all data on the disk
+
+- name: Creating hostname directory
   run_once: true
   delegate_to: "{{ fio_host }}"
-  shell: 'rm -rf "{{ fio_test_directory }}"/"{{ fio_host }}"'
+  shell: 'mkdir -p "{{ fio_test_directory }}"/"{{ fio_host }}"'
   with_items: "{{ groups['vm'] }}"
   loop_control:
     loop_var: fio_host

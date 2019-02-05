@@ -3,7 +3,13 @@
 
 [rhhihosts]
 
+[child_hosts:children]
+vm
+rhhihosts
+
 [profiling_host]
 
-
 [all:vars]
+ansible_connection=ssh
+ansible_ssh_user=
+ansible_ssh_pass=

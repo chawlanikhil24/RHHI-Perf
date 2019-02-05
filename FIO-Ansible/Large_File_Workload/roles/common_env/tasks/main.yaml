@@ -6,17 +6,27 @@
       state: present
       name:
           - sysstat
-
 - file:
-    path="{{ item }}"
-    state=directory
+    path: "{{ item }}"
+    state: directory
   loop:
-    - workdir_path
-    - iostat_dir
-    - vmstat_dir
-    - mpstat_dir
-    - network_dir
-    - top_dir
-    - pidstat_dir_1
-    - pidstat_dir_2
+    - "{{ workdir_path }}"
+    - "{{ iostat_dir }}"
+    - "{{ vmstat_dir }}"
+    - "{{ mpstat_dir }}"
+    - "{{ network_dir }}"
+    - "{{ top_dir }}"
+    - "{{ pidstat_dir_1 }}"
+    - "{{ pidstat_dir_2 }}"
+
+#- shell: 'mkdir -p "{{ item }}"'
+#  loop:
+#    - "{{ workdir_path }}"
+#    - "{{ iostat_dir }}"
+#    - "{{ vmstat_dir }}"
+#    - "{{ mpstat_dir }}"
+#    - "{{ network_dir }}"
+#    - "{{ top_dir }}"
+#    - "{{ pidstat_dir_1 }}"
+#    - "{{ pidstat_dir_2 }}"
 ...
